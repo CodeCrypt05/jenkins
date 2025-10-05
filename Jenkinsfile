@@ -5,7 +5,7 @@ pipeline {
         stage('git pull') {
             steps {
                 // Cloning the repository from GitHub
-                git url: 'https://github.com/CodeCrypt05/Jenkins-Distribution',
+                git url: 'https://github.com/CodeCrypt05/jenkins',
                 branch: 'main'
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage('Build Android APK') {
             steps {
                 // Building the APK in release mode
-                bat 'flutter build apk'
+                bat 'flutter build apk --release --android-skip-build-dependency-validation'
             }
         }
         
