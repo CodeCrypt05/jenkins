@@ -36,10 +36,39 @@ android {
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+         release {
+            // Your existing release config
+            minifyEnabled false
+            
+            // Add Firebase App Distribution configuration
+            firebaseAppDistribution {
+                // Your Firebase App ID
+                appId = "1:354531812719:android:65c2c28932e0aaf580b49a"
+                
+                // Use groups parameter with your tester group
+                groups = "dev-sanity-testing"
+                
+                // Or if using multiple groups:
+                // groups = "dev-sanity-testing, qa-team"
+                
+                // Release notes
+                releaseNotesFile = "release-notes.txt"
+                
+                // Or inline release notes:
+                // releaseNotes = "Build from Jenkins - latest features"
+                
+                // Artifact type
+                artifactType = "APK"
+            }
+        }
+        
+        debug {
+            firebaseAppDistribution {
+                appId = "1:354531812719:android:65c2c28932e0aaf580b49a"
+                groups = "dev-sanity-testing"
+                releaseNotes = "Debug build"
+                artifactType = "APK"
+            }
         }
     }
 }

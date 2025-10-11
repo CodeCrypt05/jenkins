@@ -28,17 +28,17 @@ pipeline {
             }
         }
 
-        stage ('Distribute') {
-            steps {
-                // Running the Gradle commands with the environment variable set
-                bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease'
-            }
-        }
-        
         stage('Archive APK') {
             steps {
                 // Archiving the release APK
                 archiveArtifacts artifacts: '**/build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: false
+            }
+        }
+
+        stage ('Distribute') {
+            steps {
+                // Running the Gradle commands with the environment variable set
+                bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease'
             }
         }
     }
