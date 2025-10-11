@@ -39,6 +39,7 @@ android {
          getByName("release") {
             // Your existing release config
             isMinifyEnabled = false
+            isShrinkResources = false 
             
             // Add Firebase App Distribution configuration
             firebaseAppDistribution {
