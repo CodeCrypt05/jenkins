@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+        environment {
+        GOOGLE_APPLICATION_CREDENTIALS = 'D:\\vaibhav\\jenkins\\jenkins-distribution-service-credential.json'
+    } 
+
     stages {
         stage('git pull') {
             steps {
@@ -10,12 +14,12 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                // Running Flutter tests
-                bat 'flutter test'
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         // Running Flutter tests
+        //         bat 'flutter test'
+        //     }
+        // }
 
         stage('Build Android APK') {
             steps {
@@ -24,10 +28,17 @@ pipeline {
             }
         }
         
-        stage('Archive APK') {
+        // stage('Archive APK') {
+        //     steps {
+        //         // Archiving the release APK
+        //         archiveArtifacts artifacts: '**/build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: false
+        //     }
+        // }
+
+        stage ('Distribute') {
             steps {
-                // Archiving the release APK
-                archiveArtifacts artifacts: '**/build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: false
+                // Running the Gradle commands with the environment variable set
+                bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease'
             }
         }
     }

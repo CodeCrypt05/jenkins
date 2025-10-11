@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "354531812719",
+    "project_id": "jenkins-distribution-a33b2",
+    "storage_bucket": "jenkins-distribution-a33b2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354531812719:android:65c2c28932e0aaf580b49a",
+        "android_client_info": {
+          "package_name": "com.example.jenkins"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVxfnkWPyrcaYPxTnjvlTuO85k5yFNXZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
