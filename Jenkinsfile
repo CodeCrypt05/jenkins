@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-        environment {
+    environment {
         GOOGLE_APPLICATION_CREDENTIALS = 'D:\\vaibhav\\jenkins\\jenkins-distribution-service-credential.json'
     } 
 
@@ -38,7 +38,7 @@ pipeline {
         stage ('Distribute') {
             steps {
                 // Running the Gradle commands with the environment variable set
-                bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease'
+                bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease -PfirebaseAppDistributionGroups=dev-sanity-testing'
             }
         }
     }
