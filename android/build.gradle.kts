@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'
+        classpath 'com.google.firebase:firebase-appdistribution-gradle:3.2.0'
+    }
+}
+
 allprojects {
     repositories {
         google()
