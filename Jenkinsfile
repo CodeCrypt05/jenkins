@@ -27,18 +27,18 @@ pipeline {
                 bat 'flutter build apk --release --android-skip-build-dependency-validation'
             }
         }
-        
-        // stage('Archive APK') {
-        //     steps {
-        //         // Archiving the release APK
-        //         archiveArtifacts artifacts: '**/build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: false
-        //     }
-        // }
 
         stage ('Distribute') {
             steps {
                 // Running the Gradle commands with the environment variable set
-                bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease -PfirebaseAppDistributionGroups=dev-sanity-testing'
+                bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease'
+            }
+        }
+        
+        stage('Archive APK') {
+            steps {
+                // Archiving the release APK
+                archiveArtifacts artifacts: '**/build/app/outputs/flutter-apk/app-release.apk', allowEmptyArchive: false
             }
         }
     }
