@@ -36,9 +36,9 @@ android {
     }
 
     buildTypes {
-         release {
+         getByName("release") {
             // Your existing release config
-            minifyEnabled false
+            isMinifyEnabled = false
             
             // Add Firebase App Distribution configuration
             firebaseAppDistribution {
@@ -51,7 +51,7 @@ android {
                 // Or if using multiple groups:
                 // groups = "dev-sanity-testing, qa-team"
                 
-                // Release notes
+                // Release notes from file
                 releaseNotesFile = "release-notes.txt"
                 
                 // Or inline release notes:
@@ -62,7 +62,7 @@ android {
             }
         }
         
-        debug {
+        getByName("debug") {
             firebaseAppDistribution {
                 appId = "1:354531812719:android:65c2c28932e0aaf580b49a"
                 groups = "dev-sanity-testing"
