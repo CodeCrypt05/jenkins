@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         GOOGLE_APPLICATION_CREDENTIALS = 'D:\\vaibhav\\jenkins\\jenkins-distribution-service-credential.json'
+        SONARQUBE = credentials('sqa_727c274f19dc8ffbed832b57f171ebe724a3bee2')
     } 
 
     stages {
@@ -41,6 +42,20 @@ pipeline {
                 bat 'cd android && gradlew.bat assembleRelease appDistributionUploadRelease'
             }
         }
+
+       stage('SonarQube Analysis') {
+        steps {
+            withSonarQubeEnv('SonarQube') {
+                bat """
+                "%SONAR_SCANNER_HOME%\\bin\\sonar-scanner.bat" ^
+                -Dsonar.projectKey=Jenkins-Distribution ^
+                -Dsonar.sources=. ^
+                -Dsonar.host.url=http://localhost:9000 ^
+                -Dsonar.login=%SONAR_AUTH_TOKEN%
+                """
+            }
+        }
+    }
     }
        
     post {
