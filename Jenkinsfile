@@ -59,6 +59,22 @@ pipeline {
                 }
             }
         }
+
+        stage('Email Report') {
+            steps {
+                emailext(
+                    subject: "SonarQube Report - ${currentBuild.fullDisplayName}",
+                    to: "team@example.com",
+                    body: """
+                    <h3>SonarQube Code Quality Report</h3>
+                    <p>Project: ${env.JOB_NAME}</p>
+                    <p>Build: #${env.BUILD_NUMBER}</p>
+                    <p><a href="http://localhost:9000/dashboard?id=my_project_key">View Report</a></p>
+                    """,
+                    mimeType: 'text/html'
+                )
+            }
+        }
     }
        
     post {
