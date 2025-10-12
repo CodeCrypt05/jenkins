@@ -64,7 +64,7 @@ pipeline {
             steps {
                 emailext(
                     subject: "SonarQube Report - ${currentBuild.fullDisplayName}",
-                    to: "team@example.com",
+                    to: "vaibhavwaghre@example.com",
                     body: """
                     <h3>SonarQube Code Quality Report</h3>
                     <p>Project: ${env.JOB_NAME}</p>
