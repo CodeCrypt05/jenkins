@@ -43,19 +43,23 @@ pipeline {
             }
         }
 
-       stage('SonarQube Analysis') {
-        steps {
-            withSonarQubeEnv('SonarQube') {
-                bat """
-                "%SONAR_SCANNER_HOME%\\bin\\sonar-scanner.bat" ^
-                -Dsonar.projectKey=Jenkins-Distribution ^
-                -Dsonar.sources=. ^
-                -Dsonar.host.url=http://localhost:9000 ^
-                -Dsonar.login=%SONAR_AUTH_TOKEN%
-                """
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Get the SonarScanner installation path (name must match Jenkins tool configuration)
+                    def scannerHome = tool 'SonarScanner'
+
+                    // Run SonarScanner using Windows batch
+                    withSonarQubeEnv('SonarQube') {
+                        bat """
+                        "${scannerHome}\\bin\\sonar-scanner.bat" ^
+                        -Dsonar.host.url=%SONAR_HOST_URL% ^
+                        -Dsonar.login=%SONAR_AUTH_TOKEN%
+                        """
+                    }
+                }
             }
         }
-    }
     }
        
     post {
