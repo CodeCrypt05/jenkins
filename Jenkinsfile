@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         GOOGLE_APPLICATION_CREDENTIALS = 'D:\\vaibhav\\jenkins\\jenkins-distribution-service-credential.json'
-        SONARQUBE = credentials('sqa_727c274f19dc8ffbed832b57f171ebe724a3bee2')
     } 
 
     stages {
