@@ -9,7 +9,8 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(title: Text("Health App"),),
       body: Column(
         children: [
-          Text("Profie Screen")
+          Text("Profie Screen"),
+          Text("Other Screen")
         ],
       ),
     );
