@@ -7,6 +7,11 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Health App"),),
+      body: Column(
+        children: [
+          Text("Profie Screen")
+        ],
+      ),
     );
   }
 }
